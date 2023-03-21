@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { amount } = useSelector(cartSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Navbar = () => {
         >
           <BiShoppingBag className="text-3xl opacity-80" />
           <div className="absolute right-[-3px] bottom-[-3px] z-10 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] text-white">
-            0
+            {amount}
           </div>
         </div>
       </div>

@@ -1,9 +1,14 @@
+import { useDispatch } from "react-redux";
+import { add } from "../state/slice/cartSlice";
+
 type Props = {
   item: CartItemType;
 };
 
 const ShoppingItem = ({ item }: Props) => {
   const { id, image, price, name } = item;
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div className="flex h-[400px] items-center justify-center bg-grey">
@@ -16,7 +21,12 @@ const ShoppingItem = ({ item }: Props) => {
             <span className="mb-3 text-sm font-bold">{name}</span>
             <span className="text-lg font-bold">{price} 원</span>
           </div>
-          <button className="rounded-md bg-grey p-3">Add to Cart</button>
+          <button
+            onClick={() => dispatch(add(item))}
+            className="rounded-md bg-grey p-3"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>

@@ -5,4 +5,5 @@ type CartItemType = {
   image: string;
   name: string;
   price: number;
+  amount?: number;
 };
