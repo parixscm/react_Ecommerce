@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setIsScrolled(window.scrollY > 20);
+    });
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 z-20 w-full">
+    <header
+      className={`${
+        isScrolled && "bg-grey shadow-lg"
+      } fixed top-0 left-0 z-20 w-full`}
+    >
       <div className="container mx-auto flex items-center justify-between px-2 py-4">
         <span className="text-xl font-bold">Shopify</span>
         <div className="relative cursor-pointer">
