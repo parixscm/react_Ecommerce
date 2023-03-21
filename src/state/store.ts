@@ -6,3 +6,5 @@ export const store = configureStore({
     checkOut: checkOutReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
