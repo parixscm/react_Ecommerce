@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 import CheckOut from "./components/CheckOut";
 import Navbar from "./components/Navbar";
 import ShoppingContainer from "./components/ShoppingContainer";
-import { RootState } from "./state/store";
+import { checkOutSelector } from "./state/slice/checkOutSlice";
 
 function App() {
-  const { isOpen } = useSelector((state: RootState) => state.checkOut);
+  const { isOpen } = useSelector(checkOutSelector);
 
   return (
     <div>

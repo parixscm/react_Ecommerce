@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 interface CheckOutState {
   isOpen: boolean;
@@ -16,4 +17,6 @@ const checkOutSlice = createSlice({
   },
 });
 export const { toggle } = checkOutSlice.actions;
+export const checkOutSelector = (state: RootState) => state.checkOut;
+
 export default checkOutSlice.reducer;
