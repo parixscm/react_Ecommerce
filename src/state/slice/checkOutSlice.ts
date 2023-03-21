@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface CounterState {
+interface CheckOutState {
   isOpen: boolean;
 }
 
-const initialState: CounterState = { isOpen: false };
+const initialState: CheckOutState = { isOpen: false };
 
 const checkOutSlice = createSlice({
   name: "checkOut",
