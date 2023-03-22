@@ -17,6 +17,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // TODO: ADD to Card 버튼을 누르면 리스트에서 삭제되도록 처리
     add: (state, action) => {
       state.amount += 1;
       const cartItem = state.cartItems.find(
@@ -34,7 +35,7 @@ const cartSlice = createSlice({
       state.cartItems[itemIdx].amount! += 1;
       state.total += action.payload.price;
     },
-    // TODO: Checkout 개수가 0개면 cartItems 리스트에서 삭제해야 함
+    // TODO: Checkout 개수가 0개면 cartItems 리스트에서 삭제
     decrease: (state, action) => {
       const itemIdx = state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
@@ -56,10 +57,15 @@ const cartSlice = createSlice({
       );
       state.total = total;
     },
+    clear: (state) => {
+      state.cartItems = [];
+      state.amount = 0;
+    },
   },
 });
 
-export const { add, increase, decrease, remove, total } = cartSlice.actions;
+export const { add, increase, decrease, remove, total, clear } =
+  cartSlice.actions;
 export const cartSelector = (state: RootState) => state.cart;
 
 export default cartSlice.reducer;

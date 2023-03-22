@@ -1,6 +1,6 @@
-import { HiOutlineChevronLeft } from "react-icons/hi";
+import { HiOutlineChevronLeft, HiTrash } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { cartSelector } from "../state/slice/cartSlice";
+import { cartSelector, clear } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
 import CheckOutItem from "./CheckOutItem";
 const CheckOut = () => {
@@ -35,6 +35,10 @@ const CheckOut = () => {
                 ))}
                 <div className="mt-12 flex justify-between">
                   <span className="font-extrabold">합계 ${total} 원</span>
+                  <HiTrash
+                    onClick={() => dispatch(clear())}
+                    className="cursor-pointer text-2xl"
+                  />
                 </div>
               </>
             )}
