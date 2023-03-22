@@ -1,6 +1,6 @@
 import { HiX } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { increase } from "../state/slice/cartSlice";
+import { decrease, increase } from "../state/slice/cartSlice";
 
 type Props = {
   cartItem: CartItemType;
@@ -18,7 +18,10 @@ const CheckOutItem = ({ cartItem }: Props) => {
       <div className="flex max-w-[6.8rem] flex-col items-start">
         <div>{name}</div>
         <div className="mt-2 flex items-center gap-4">
-          <button className="h-7 w-7 rounded-full bg-black text-white">
+          <button
+            onClick={() => dispatch(decrease(cartItem))}
+            className="h-7 w-7 rounded-full bg-black text-white"
+          >
             -
           </button>
           <div>{amount}</div>
