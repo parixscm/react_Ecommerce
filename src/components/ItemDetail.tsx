@@ -2,12 +2,18 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { items } from "../cartItems";
 import { add } from "../state/slice/cartSlice";
+import { toggle } from "../state/slice/checkOutSlice";
 
 const ItemDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const item = items.find((item) => item.id === +id!);
   const { name, price, image } = item!;
+
+  const addToCartHandler = () => {
+    dispatch(add(item));
+    dispatch(toggle());
+  };
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center p-4">
@@ -26,7 +32,7 @@ const ItemDetail = () => {
             expedita, perspiciatis unde libero numquam soluta aliquid sunt.
           </p>
           <button
-            onClick={() => dispatch(add(item))}
+            onClick={addToCartHandler}
             className="bg-black p-3 text-white"
           >
             Add to Cart

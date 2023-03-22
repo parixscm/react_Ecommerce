@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { add } from "../state/slice/cartSlice";
 import { Link } from "react-router-dom";
+import { toggle } from "../state/slice/checkOutSlice";
 
 type Props = {
   item: CartItemType;
@@ -9,6 +10,11 @@ type Props = {
 const ShoppingItem = ({ item }: Props) => {
   const { id, image, price, name } = item;
   const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(add(item));
+    dispatch(toggle());
+  };
 
   return (
     <div>
@@ -25,10 +31,7 @@ const ShoppingItem = ({ item }: Props) => {
             <span className="mb-3 text-xl font-bold">{name}</span>
             <span className="text-base font-semibold">{price}원</span>
           </div>
-          <button
-            onClick={() => dispatch(add(item))}
-            className="rounded-md bg-grey p-3"
-          >
+          <button onClick={addToCartHandler} className="rounded-md bg-grey p-3">
             Add to Cart
           </button>
         </div>
