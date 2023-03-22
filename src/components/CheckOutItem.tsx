@@ -1,6 +1,6 @@
 import { HiX } from "react-icons/hi";
 import { useDispatch } from "react-redux";
-import { decrease, increase } from "../state/slice/cartSlice";
+import { decrease, increase, remove } from "../state/slice/cartSlice";
 
 type Props = {
   cartItem: CartItemType;
@@ -34,7 +34,10 @@ const CheckOutItem = ({ cartItem }: Props) => {
         </div>
       </div>
       <div className="flex flex-col items-center gap-3">
-        <HiX className="cursor-pointer text-xl" />
+        <HiX
+          onClick={() => dispatch(remove(cartItem))}
+          className="cursor-pointer text-xl"
+        />
         <div>{price * amount!} ₩</div>
       </div>
     </div>
