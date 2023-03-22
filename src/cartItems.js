@@ -12,25 +12,25 @@ export const items = [
   {
     id: 1,
     image: item1,
-    name: "Ceramic Table Vase",
+    name: "세라믹 베이스",
     price: 83000,
   },
   {
     id: 2,
     image: item2,
-    name: "Scissor",
+    name: "은가위",
     price: 6400,
   },
   {
     id: 3,
     image: item3,
-    name: "Bookends",
+    name: "세라믹 책 받침",
     price: 19000,
   },
   {
     id: 4,
     image: item4,
-    name: "Wall Clock",
+    name: "벽 시계",
     price: 63000,
   },
   {
@@ -42,19 +42,19 @@ export const items = [
   {
     id: 6,
     image: item6,
-    name: "Aumeo Audio",
+    name: "블루투스 스피커",
     price: 438000,
   },
   {
     id: 7,
     image: item7,
-    name: "Bottle Humidifier",
+    name: "고급 가습기",
     price: 17600,
   },
   {
     id: 8,
     image: item8,
-    name: "Grey Watch",
+    name: "수제 손목 시계",
     price: 118000,
   },
   {

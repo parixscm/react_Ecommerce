@@ -22,8 +22,8 @@ const ShoppingItem = ({ item }: Props) => {
       <div className="mt-6 flex items-center justify-between px-4">
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col">
-            <span className="mb-3 text-sm font-bold">{name}</span>
-            <span className="text-lg font-bold">{price} 원</span>
+            <span className="mb-3 text-xl font-bold">{name}</span>
+            <span className="text-base font-semibold">{price}원</span>
           </div>
           <button
             onClick={() => dispatch(add(item))}

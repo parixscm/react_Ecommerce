@@ -17,7 +17,6 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    // TODO: ADD to Card 버튼을 누르면 리스트에서 삭제되도록 처리
     add: (state, action) => {
       state.amount += 1;
       const cartItem = state.cartItems.find(

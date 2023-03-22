@@ -34,7 +34,9 @@ const CheckOut = () => {
                   <CheckOutItem key={cartItem.id} cartItem={cartItem} />
                 ))}
                 <div className="mt-12 flex items-center justify-between">
-                  <span className="font-extrabold">합계 ${total} 원</span>
+                  <span>
+                    합계 <span className="font-bold">{total}원</span>
+                  </span>
                   <HiTrash
                     onClick={() => dispatch(clear())}
                     className="cursor-pointer text-2xl"

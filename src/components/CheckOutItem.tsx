@@ -16,7 +16,8 @@ const CheckOutItem = ({ cartItem }: Props) => {
         <img alt="item" src={image} className="h-20 w-20 object-cover" />
       </div>
       <div className="flex max-w-[6.8rem] flex-col items-start">
-        <div>{name}</div>
+        <div className="text-base">{name}</div>
+        <div className="text-sm">{price}원</div>
         <div className="mt-2 flex items-center gap-4">
           <button
             onClick={() => dispatch(decrease(cartItem))}
@@ -38,7 +39,7 @@ const CheckOutItem = ({ cartItem }: Props) => {
           onClick={() => dispatch(remove(cartItem))}
           className="cursor-pointer text-xl"
         />
-        <div>{price * amount!} ₩</div>
+        <div className="font-bold">{price * amount!}원</div>
       </div>
     </div>
   );
