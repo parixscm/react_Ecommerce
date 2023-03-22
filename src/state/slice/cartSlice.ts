@@ -32,8 +32,7 @@ const cartSlice = createSlice({
         (cartItem) => cartItem.id === action.payload.id
       );
       state.cartItems[itemIdx].amount! += 1;
-      // state.total =
-      //   state.cartItems[itemIdx].amount! * state.cartItems[itemIdx].price;
+      state.total += action.payload.price;
     },
     // TODO: Checkout 개수가 0개면 cartItems 리스트에서 삭제해야 함
     decrease: (state, action) => {
@@ -50,10 +49,17 @@ const cartSlice = createSlice({
       );
       state.amount -= action.payload.amount;
     },
+    total: (state) => {
+      let total = 0;
+      state.cartItems.forEach(
+        (cartItem) => (total += cartItem.amount! * cartItem.price)
+      );
+      state.total = total;
+    },
   },
 });
 
-export const { add, increase, decrease, remove } = cartSlice.actions;
+export const { add, increase, decrease, remove, total } = cartSlice.actions;
 export const cartSelector = (state: RootState) => state.cart;
 
 export default cartSlice.reducer;

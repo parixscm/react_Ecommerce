@@ -5,7 +5,7 @@ import { toggle } from "../state/slice/checkOutSlice";
 import CheckOutItem from "./CheckOutItem";
 const CheckOut = () => {
   const dispatch = useDispatch();
-  const { cartItems } = useSelector(cartSelector);
+  const { cartItems, amount, total } = useSelector(cartSelector);
 
   return (
     <div className="fixed left-0 top-0 z-30 h-screen w-full bg-transparentBlack">
@@ -21,7 +21,7 @@ const CheckOut = () => {
                 Continue Shopping
               </span>
             </div>
-            <div>Shopping Bag (0)</div>
+            <div>Shopping Bag ({amount})</div>
           </div>
           <div className="mt-8">
             {cartItems.length === 0 ? (
@@ -33,6 +33,9 @@ const CheckOut = () => {
                 {cartItems.map((cartItem) => (
                   <CheckOutItem key={cartItem.id} cartItem={cartItem} />
                 ))}
+                <div className="mt-12 flex justify-between">
+                  <span className="font-extrabold">합계 ${total} 원</span>
+                </div>
               </>
             )}
           </div>
