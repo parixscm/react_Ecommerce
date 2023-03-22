@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { add } from "../state/slice/cartSlice";
+import { Link } from "react-router-dom";
 
 type Props = {
   item: CartItemType;
@@ -11,9 +12,12 @@ const ShoppingItem = ({ item }: Props) => {
 
   return (
     <div>
-      <div className="flex h-[400px] items-center justify-center bg-grey">
-        <img alt="item" src={image} className="w-[200px]" />
-      </div>
+      {/* TODO: 데이터 넘기는 법 찾기 */}
+      <Link to={`/itemDetail/${id}`}>
+        <div className="flex h-[400px] items-center justify-center bg-grey">
+          <img alt="item" src={image} className="w-[200px]" />
+        </div>
+      </Link>
 
       <div className="mt-6 flex items-center justify-between px-4">
         <div className="flex w-full items-center justify-between">

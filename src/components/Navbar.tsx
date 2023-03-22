@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { BiShoppingBag } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
+import { BiShoppingBag } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,7 +23,9 @@ const Navbar = () => {
       } fixed top-0 left-0 z-20 w-full`}
     >
       <div className="container mx-auto flex items-center justify-between px-2 py-4">
-        <span className="text-xl font-bold">Shopify</span>
+        <Link to="/">
+          <span className="text-xl font-bold">Shopify</span>
+        </Link>
         <div
           onClick={() => dispatch(toggle())}
           className="relative cursor-pointer"

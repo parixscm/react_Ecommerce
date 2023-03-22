@@ -33,12 +33,15 @@ const CheckOut = () => {
                 {cartItems.map((cartItem) => (
                   <CheckOutItem key={cartItem.id} cartItem={cartItem} />
                 ))}
-                <div className="mt-12 flex justify-between">
+                <div className="mt-12 flex items-center justify-between">
                   <span className="font-extrabold">합계 ${total} 원</span>
                   <HiTrash
                     onClick={() => dispatch(clear())}
                     className="cursor-pointer text-2xl"
                   />
+                </div>
+                <div className="mt-8 cursor-pointer bg-black p-3 text-center text-white">
+                  Check Out
                 </div>
               </>
             )}
