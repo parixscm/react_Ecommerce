@@ -26,10 +26,19 @@ const cartSlice = createSlice({
         ? (cartItem.amount! += 1)
         : state.cartItems.push({ ...action.payload, amount: 1 });
     },
+    increase: (state, action) => {
+      state.amount += 1;
+      const itemIdx = state.cartItems.findIndex(
+        (cartItem) => cartItem.id === action.payload.id
+      );
+      state.cartItems[itemIdx].amount! += 1;
+      state.total =
+        state.cartItems[itemIdx].amount! * state.cartItems[itemIdx].price;
+    },
   },
 });
 
-export const { add } = cartSlice.actions;
+export const { add, increase } = cartSlice.actions;
 export const cartSelector = (state: RootState) => state.cart;
 
 export default cartSlice.reducer;

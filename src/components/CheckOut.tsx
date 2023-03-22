@@ -1,8 +1,11 @@
 import { HiOutlineChevronLeft } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
+import CheckOutItem from "./CheckOutItem";
 const CheckOut = () => {
   const dispatch = useDispatch();
+  const { cartItems } = useSelector(cartSelector);
 
   return (
     <div className="fixed left-0 top-0 z-30 h-screen w-full bg-transparentBlack">
@@ -19,6 +22,19 @@ const CheckOut = () => {
               </span>
             </div>
             <div>Shopping Bag (0)</div>
+          </div>
+          <div className="mt-8">
+            {cartItems.length === 0 ? (
+              <div className="text-center text-2xl uppercase">
+                Your cart is empty
+              </div>
+            ) : (
+              <>
+                {cartItems.map((cartItem) => (
+                  <CheckOutItem key={cartItem.id} cartItem={cartItem} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
