@@ -8,7 +8,7 @@ type Props = {
 };
 
 const CheckOutItem = ({ cartItem }: Props) => {
-  const { id, image, name, price, amount } = cartItem;
+  const { image, name, price, amount } = cartItem;
   const dispatch = useDispatch();
 
   const notifyRemoveItem = () =>

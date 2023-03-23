@@ -26,7 +26,6 @@ const ShoppingItem = ({ item }: Props) => {
 
   return (
     <div>
-      {/* TODO: 데이터 넘기는 법 찾기 */}
       <Link to={`/itemDetail/${id}`} state={{ item }}>
         <div className="flex h-[400px] items-center justify-center bg-grey">
           <img alt="item" src={image} className="w-[200px]" />

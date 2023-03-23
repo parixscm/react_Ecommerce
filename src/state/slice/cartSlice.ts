@@ -34,7 +34,6 @@ const cartSlice = createSlice({
       state.cartItems[itemIdx].amount! += 1;
       state.total += action.payload.price;
     },
-    // TODO: Checkout 개수가 0개면 cartItems 리스트에서 삭제
     decrease: (state, action) => {
       const itemIdx = state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
@@ -42,6 +41,12 @@ const cartSlice = createSlice({
       state.cartItems[itemIdx].amount! > 0 &&
         state.cartItems[itemIdx].amount!-- &&
         state.amount--;
+
+      if (state.cartItems[itemIdx].amount === 0) {
+        state.cartItems = state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        );
+      }
     },
     remove: (state, action) => {
       state.cartItems = state.cartItems.filter(
