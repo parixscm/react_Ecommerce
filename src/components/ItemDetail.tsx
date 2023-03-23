@@ -1,14 +1,12 @@
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { items } from "../cartItems";
+import { useLocation } from "react-router-dom";
 import { add } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
 
 const ItemDetail = () => {
-  const { id } = useParams();
   const dispatch = useDispatch();
-  const item = items.find((item) => item.id === +id!);
-  const { name, price, image } = item!;
+  const item = useLocation().state.item;
+  const { name, price, image } = item;
 
   const addToCartHandler = () => {
     dispatch(add(item));
