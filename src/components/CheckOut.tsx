@@ -1,9 +1,10 @@
-import { HiOutlineChevronLeft, HiTrash } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector, clear } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
-import CheckOutItem from "./CheckOutItem";
 import toast, { Toaster } from "react-hot-toast";
+import { HiOutlineChevronLeft, HiTrash } from "react-icons/hi";
+import { motion } from "framer-motion";
+import CheckOutItem from "./CheckOutItem";
 
 const CheckOut = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,12 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="fixed left-0 top-0 z-30 h-screen w-full bg-transparentBlack">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+      className="fixed left-0 top-0 z-30 h-screen w-full bg-transparentBlack"
+    >
       <div className="h-full min-w-[15rem] overflow-y-auto bg-grey sm:w-[40rem]">
         <div className="p-6">
           <div className="flex items-center justify-between">
@@ -64,7 +70,7 @@ const CheckOut = () => {
         </div>
       </div>
       <Toaster />
-    </div>
+    </motion.div>
   );
 };
 
