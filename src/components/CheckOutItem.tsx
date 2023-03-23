@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import { decrease, increase, remove } from "../state/slice/cartSlice";
 import { HiX } from "react-icons/hi";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { notify } from "../utils/toast";
 
 type Props = {
   cartItem: CartItemType;
@@ -11,15 +12,9 @@ const CheckOutItem = ({ cartItem }: Props) => {
   const { image, name, price, amount } = cartItem;
   const dispatch = useDispatch();
 
-  const notifyRemoveItem = () =>
-    toast.success("상품을 장바구니에서 삭제했습니다", {
-      duration: 2500,
-      position: "bottom-center",
-    });
-
   const removeFromCartHandler = () => {
     dispatch(remove(cartItem));
-    notifyRemoveItem();
+    notify("상품을 장바구니에서 삭제했습니다");
   };
 
   return (

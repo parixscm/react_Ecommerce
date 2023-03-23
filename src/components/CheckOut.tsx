@@ -1,24 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector, clear } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { HiOutlineChevronLeft, HiTrash } from "react-icons/hi";
 import { motion } from "framer-motion";
 import CheckOutItem from "./CheckOutItem";
+import { notify } from "../utils/toast";
 
 const CheckOut = () => {
   const dispatch = useDispatch();
   const { cartItems, amount, total } = useSelector(cartSelector);
 
-  const notifyClearCart = () =>
-    toast.success("장바구니가 초기화 되었습니다", {
-      duration: 2500,
-      position: "bottom-center",
-    });
-
   const clearCartHandler = () => {
     dispatch(clear());
-    notifyClearCart();
+    notify("장바구니가 초기화 되었습니다");
   };
 
   return (

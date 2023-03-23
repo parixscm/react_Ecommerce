@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { add } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
+import { Toaster } from "react-hot-toast";
+import { notify } from "../utils/toast";
 
 const ItemDetail = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ const ItemDetail = () => {
   const addToCartHandler = () => {
     dispatch(add(item));
     dispatch(toggle());
+    notify("상품이 장바구니에 담겼습니다");
   };
 
   return (
@@ -37,6 +40,7 @@ const ItemDetail = () => {
           </button>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

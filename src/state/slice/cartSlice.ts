@@ -1,3 +1,4 @@
+import { notify } from "./../../utils/toast";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
@@ -43,6 +44,7 @@ const cartSlice = createSlice({
         state.amount--;
 
       if (state.cartItems[itemIdx].amount === 0) {
+        notify("상품을 장바구니에서 삭제했습니다");
         state.cartItems = state.cartItems.filter(
           (cartItem) => cartItem.id !== action.payload.id
         );
