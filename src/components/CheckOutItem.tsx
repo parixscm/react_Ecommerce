@@ -1,6 +1,6 @@
-import { HiX } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { decrease, increase, remove } from "../state/slice/cartSlice";
+import { HiX } from "react-icons/hi";
 import toast, { Toaster } from "react-hot-toast";
 
 type Props = {
@@ -29,7 +29,7 @@ const CheckOutItem = ({ cartItem }: Props) => {
       </div>
       <div className="flex max-w-[6.8rem] flex-col items-start">
         <div className="text-base">{name}</div>
-        <div className="text-sm">{price}원</div>
+        <div className="text-sm">{price.toLocaleString("ko-KR")}원</div>
         <div className="mt-2 flex items-center gap-4">
           <button
             onClick={() => dispatch(decrease(cartItem))}
@@ -51,7 +51,9 @@ const CheckOutItem = ({ cartItem }: Props) => {
           onClick={removeFromCartHandler}
           className="cursor-pointer text-xl"
         />
-        <div className="font-bold">{price * amount!}원</div>
+        <div className="font-bold">
+          {(price * amount!).toLocaleString("ko-KR")}원
+        </div>
       </div>
       <Toaster />
     </div>

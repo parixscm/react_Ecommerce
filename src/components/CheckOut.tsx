@@ -54,7 +54,10 @@ const CheckOut = () => {
                 ))}
                 <div className="mt-12 flex items-center justify-between">
                   <span>
-                    합계 <span className="font-bold">{total}원</span>
+                    합계{" "}
+                    <span className="font-bold">
+                      {total.toLocaleString("ko-KR")}원
+                    </span>
                   </span>
                   <HiTrash
                     onClick={clearCartHandler}

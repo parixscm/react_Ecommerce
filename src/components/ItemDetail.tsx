@@ -23,7 +23,7 @@ const ItemDetail = () => {
         />
         <div>
           <div className="mb-4 text-3xl font-extrabold">{name}</div>
-          <div className="mb-4">{price} 원</div>
+          <div className="mb-4">{price.toLocaleString("ko-KR")} 원</div>
           <p className="mb-4 max-w-[400px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
             suscipit corporis doloribus impedit excepturi rerum quo voluptatem

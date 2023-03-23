@@ -37,7 +37,9 @@ const ShoppingItem = ({ item }: Props) => {
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col">
             <span className="mb-3 text-xl font-bold">{name}</span>
-            <span className="text-base font-semibold">{price}원</span>
+            <span className="text-base font-semibold">
+              {price.toLocaleString("ko-KR")}원
+            </span>
           </div>
           <button onClick={addToCartHandler} className="rounded-md bg-grey p-3">
             Add to Cart
