@@ -3,9 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartSelector, clear } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
 import CheckOutItem from "./CheckOutItem";
+import toast, { Toaster } from "react-hot-toast";
+
 const CheckOut = () => {
   const dispatch = useDispatch();
   const { cartItems, amount, total } = useSelector(cartSelector);
+
+  const notifyClearCart = () =>
+    toast.success("장바구니가 초기화 되었습니다", {
+      duration: 2500,
+      position: "bottom-center",
+    });
+
+  const clearCartHandler = () => {
+    dispatch(clear());
+    notifyClearCart();
+  };
 
   return (
     <div className="fixed left-0 top-0 z-30 h-screen w-full bg-transparentBlack">
@@ -38,7 +51,7 @@ const CheckOut = () => {
                     합계 <span className="font-bold">{total}원</span>
                   </span>
                   <HiTrash
-                    onClick={() => dispatch(clear())}
+                    onClick={clearCartHandler}
                     className="cursor-pointer text-2xl"
                   />
                 </div>
@@ -50,6 +63,7 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

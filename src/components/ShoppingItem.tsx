@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { add } from "../state/slice/cartSlice";
 import { Link } from "react-router-dom";
 import { toggle } from "../state/slice/checkOutSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 type Props = {
   item: CartItemType;
@@ -11,9 +12,16 @@ const ShoppingItem = ({ item }: Props) => {
   const { id, image, price, name } = item;
   const dispatch = useDispatch();
 
+  const notifyAddItem = () =>
+    toast.success("상품이 장바구니에 담겼습니다", {
+      duration: 2500,
+      position: "bottom-center",
+    });
+
   const addToCartHandler = () => {
     dispatch(add(item));
     dispatch(toggle());
+    notifyAddItem();
   };
 
   return (
@@ -36,6 +44,8 @@ const ShoppingItem = ({ item }: Props) => {
           </button>
         </div>
       </div>
+
+      <Toaster />
     </div>
   );
 };

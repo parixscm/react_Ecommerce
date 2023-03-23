@@ -1,6 +1,7 @@
 import { HiX } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { decrease, increase, remove } from "../state/slice/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 type Props = {
   cartItem: CartItemType;
@@ -9,6 +10,17 @@ type Props = {
 const CheckOutItem = ({ cartItem }: Props) => {
   const { id, image, name, price, amount } = cartItem;
   const dispatch = useDispatch();
+
+  const notifyRemoveItem = () =>
+    toast.success("상품을 장바구니에서 삭제했습니다", {
+      duration: 2500,
+      position: "bottom-center",
+    });
+
+  const removeFromCartHandler = () => {
+    dispatch(remove(cartItem));
+    notifyRemoveItem();
+  };
 
   return (
     <div className="mb-6 flex items-center justify-between border border-solid border-glass p-4">
@@ -36,11 +48,12 @@ const CheckOutItem = ({ cartItem }: Props) => {
       </div>
       <div className="flex flex-col items-center gap-3">
         <HiX
-          onClick={() => dispatch(remove(cartItem))}
+          onClick={removeFromCartHandler}
           className="cursor-pointer text-xl"
         />
         <div className="font-bold">{price * amount!}원</div>
       </div>
+      <Toaster />
     </div>
   );
 };
