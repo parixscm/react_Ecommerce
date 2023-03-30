@@ -24,7 +24,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto flex items-center justify-between px-2 py-4">
         <Link to="/">
-          <span className="text-xl font-bold">Shopify</span>
+          <span className="text-xl font-bold">Jason's</span>
         </Link>
         <div
           onClick={() => dispatch(toggle())}
