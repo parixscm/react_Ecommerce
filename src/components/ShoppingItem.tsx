@@ -1,15 +1,21 @@
+/**
+ * 파일 역할: 상품 컴포넌트
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { add } from "../state/slice/cartSlice";
-import { Link } from "react-router-dom";
 import { toggle } from "../state/slice/checkOutSlice";
 import { Toaster } from "react-hot-toast";
 import { notify } from "../utils/toast";
 
-type Props = {
+type ItemProps = {
   item: CartItemType;
 };
 
-const ShoppingItem = ({ item }: Props) => {
+const ShoppingItem = ({ item }: ItemProps) => {
   const { id, image, price, name } = item;
   const dispatch = useDispatch();
 

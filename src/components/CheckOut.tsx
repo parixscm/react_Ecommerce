@@ -1,11 +1,17 @@
+/**
+ * 파일 역할: 장바구니 컴포넌트
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
+import CheckOutItem from "./CheckOutItem";
+import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector, clear } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
+import { notify } from "../utils/toast";
 import { Toaster } from "react-hot-toast";
 import { HiOutlineChevronLeft, HiTrash } from "react-icons/hi";
-import { motion } from "framer-motion";
-import CheckOutItem from "./CheckOutItem";
-import { notify } from "../utils/toast";
 
 const CheckOut = () => {
   const dispatch = useDispatch();

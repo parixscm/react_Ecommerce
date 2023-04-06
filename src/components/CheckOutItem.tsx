@@ -1,14 +1,20 @@
+/**
+ * 파일 역할: 장바구니 상품 컴포넌트
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
 import { useDispatch } from "react-redux";
 import { decrease, increase, remove } from "../state/slice/cartSlice";
-import { HiX } from "react-icons/hi";
 import { Toaster } from "react-hot-toast";
 import { notify } from "../utils/toast";
+import { HiX } from "react-icons/hi";
 
-type Props = {
+type ItemProps = {
   cartItem: CartItemType;
 };
 
-const CheckOutItem = ({ cartItem }: Props) => {
+const CheckOutItem = ({ cartItem }: ItemProps) => {
   const { image, name, price, amount } = cartItem;
   const dispatch = useDispatch();
 

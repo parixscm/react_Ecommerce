@@ -1,3 +1,9 @@
+/**
+ * 파일 역할: TailwindCSS 커스텀 스타일 설정
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

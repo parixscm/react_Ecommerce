@@ -1,3 +1,9 @@
+/**
+ * 파일 역할: 장바구니 슬라이스
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
 import { notify } from "./../../utils/toast";
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
@@ -18,6 +24,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // 상품 추가
     add: (state, action) => {
       state.amount += 1;
       const cartItem = state.cartItems.find(
@@ -27,6 +34,7 @@ const cartSlice = createSlice({
         ? (cartItem.amount! += 1)
         : state.cartItems.push({ ...action.payload, amount: 1 });
     },
+    // 상품 수량 증가
     increase: (state, action) => {
       state.amount += 1;
       const itemIdx = state.cartItems.findIndex(
@@ -35,6 +43,7 @@ const cartSlice = createSlice({
       state.cartItems[itemIdx].amount! += 1;
       state.total += action.payload.price;
     },
+    // 상품 수량 감소
     decrease: (state, action) => {
       const itemIdx = state.cartItems.findIndex(
         (cartItem) => cartItem.id === action.payload.id
@@ -42,7 +51,6 @@ const cartSlice = createSlice({
       state.cartItems[itemIdx].amount! > 0 &&
         state.cartItems[itemIdx].amount!-- &&
         state.amount--;
-
       if (state.cartItems[itemIdx].amount === 0) {
         notify("상품을 장바구니에서 삭제했습니다");
         state.cartItems = state.cartItems.filter(
@@ -50,12 +58,14 @@ const cartSlice = createSlice({
         );
       }
     },
+    // 장바구니 내 특정 상품 삭제
     remove: (state, action) => {
       state.cartItems = state.cartItems.filter(
         (cartItem) => cartItem.id !== action.payload.id
       );
       state.amount -= action.payload.amount;
     },
+    // 장바구니 내 상품 총 수량 계산
     total: (state) => {
       let total = 0;
       state.cartItems.forEach(
@@ -63,6 +73,7 @@ const cartSlice = createSlice({
       );
       state.total = total;
     },
+    // 상품 초기화
     clear: (state) => {
       state.cartItems = [];
       state.amount = 0;

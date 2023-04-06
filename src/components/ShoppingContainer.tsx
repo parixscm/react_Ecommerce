@@ -1,3 +1,9 @@
+/**
+ * 파일 역할: 상품 모음 컴포넌트
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
 import { items } from "../cartItems";
 import ShoppingItem from "./ShoppingItem";
 

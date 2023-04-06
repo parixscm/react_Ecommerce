@@ -1,3 +1,9 @@
+/**
+ * 파일 역할: 상품 상세 페이지
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { add } from "../state/slice/cartSlice";

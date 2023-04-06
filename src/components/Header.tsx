@@ -1,11 +1,17 @@
+/**
+ * 파일 역할: 헤더 컴포넌트
+ * 작성자: Jason (parixscm)
+ * 최근 업데이트: 2023.03.23.
+ */
+
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
 import { BiShoppingBag } from "react-icons/bi";
-import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { amount } = useSelector(cartSelector);
   const dispatch = useDispatch();
@@ -40,4 +46,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;
