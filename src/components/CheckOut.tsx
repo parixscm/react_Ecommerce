@@ -54,9 +54,9 @@ const CheckOut = () => {
                   <CheckOutItem key={cartItem.id} cartItem={cartItem} />
                 ))}
                 <div className="mt-12 flex items-center justify-between">
-                  <span className="font-semibold text-blue-600">
+                  <span className="font-semibold text-slate-700">
                     합계{" "}
-                    <span className="font-bold text-slate-800">
+                    <span className="font-bold text-slate-900">
                       {total.toLocaleString("ko-KR")}원
                     </span>
                   </span>
