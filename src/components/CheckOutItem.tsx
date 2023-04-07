@@ -50,7 +50,7 @@ const CheckOutItem = ({ cartItem }: ItemProps) => {
       <div className="flex flex-col items-center gap-3">
         <HiX
           onClick={removeFromCartHandler}
-          className="cursor-pointer text-xl"
+          className="cursor-pointer text-xl hover:scale-125"
         />
         <div className="font-bold">
           {(price * amount!).toLocaleString("ko-KR")}원

@@ -37,7 +37,7 @@ const CheckOut = () => {
               className="flex cursor-pointer items-center"
             >
               <HiOutlineChevronLeft />
-              <span className="select-none text-[.95rem] uppercase">
+              <span className="select-none text-[.95rem] uppercase hover:underline">
                 Continue Shopping
               </span>
             </div>
@@ -54,18 +54,18 @@ const CheckOut = () => {
                   <CheckOutItem key={cartItem.id} cartItem={cartItem} />
                 ))}
                 <div className="mt-12 flex items-center justify-between">
-                  <span>
+                  <span className="font-semibold text-blue-600">
                     합계{" "}
-                    <span className="font-bold">
+                    <span className="font-bold text-slate-800">
                       {total.toLocaleString("ko-KR")}원
                     </span>
                   </span>
                   <HiTrash
                     onClick={clearCartHandler}
-                    className="cursor-pointer text-2xl"
+                    className="cursor-pointer text-2xl hover:scale-110"
                   />
                 </div>
-                <div className="mt-8 cursor-pointer bg-black p-3 text-center text-white">
+                <div className="mt-8 cursor-pointer bg-black p-3 text-center text-white hover:opacity-70">
                   Check Out
                 </div>
               </>
