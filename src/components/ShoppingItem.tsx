@@ -1,10 +1,12 @@
 /**
  * 파일 역할: 상품 컴포넌트
  * 작성자: Jason (parixscm)
- * 최근 업데이트: 2023.03.23.
+ * 최근 업데이트: 2023.04.07.
  */
 
+import AddToCartButton from "./AddToCartButton";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { add } from "../state/slice/cartSlice";
 import { toggle } from "../state/slice/checkOutSlice";
@@ -28,9 +30,17 @@ const ShoppingItem = ({ item }: ItemProps) => {
   return (
     <div>
       <Link to={`/itemDetail/${id}`} state={{ item }}>
-        <div className="flex h-[400px] items-center justify-center bg-grey">
-          <img alt="item" src={image} className="w-[200px]" />
-        </div>
+        <motion.div
+          initial={{ y: 0 }}
+          whileHover={{ y: -8 }}
+          className="group flex h-[400px] items-center justify-center rounded-lg bg-grey"
+        >
+          <img
+            alt="item"
+            src={image}
+            className="w-[200px] group-hover:scale-105"
+          />
+        </motion.div>
       </Link>
       <div className="mt-6 flex items-center justify-between px-4">
         <div className="flex w-full items-center justify-between">
@@ -40,9 +50,7 @@ const ShoppingItem = ({ item }: ItemProps) => {
               {price.toLocaleString("ko-KR")}원
             </span>
           </div>
-          <button onClick={addToCartHandler} className="rounded-md bg-grey p-3">
-            Add to Cart
-          </button>
+          <AddToCartButton addItemHandler={addToCartHandler} />
         </div>
       </div>
       <Toaster />
