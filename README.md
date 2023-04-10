@@ -1,46 +1,110 @@
-# Getting Started with Create React App
+# **Jason's 미니 쇼핑몰 🛒**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+👉🏻 https://jason-mall.vercel.app
 
-## Available Scripts
+## **🎯 개발 목표**
 
-In the project directory, you can run:
+- Redux-Toolkit 상태관리 라이브러리를 사용해 쇼핑몰 장바구니 기능을 구현하고자 했습니다.
+- 반응형 디자인을 적용한 이커머스 유형의 웹 페이지를 구현해보고 싶었습니다.
 
-### `npm start`
+<br />
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## **🕹 사용한 기술**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue)
 
-### `npm test`
+<br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **👨🏻‍🏫 Advanced Feature**
 
-### `npm run build`
+- 상품 추가/삭제 및 상품 수량 수정 기능을 구현했습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## **💻 코드**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+interface CartState {
+  cartItems: CartItemType[];
+  amount: number;
+  total: number;
+}
 
-### `npm run eject`
+const initialState: CartState = {
+  cartItems: [],
+  amount: 0,
+  total: 0,
+};
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    // 상품 추가
+    add: (state, action) => {
+      state.amount += 1;
+      const cartItem = state.cartItems.find(
+        (cartItem) => cartItem.id === action.payload.id
+      );
+      cartItem
+        ? (cartItem.amount! += 1)
+        : state.cartItems.push({ ...action.payload, amount: 1 });
+    },
+    // 상품 수량 증가
+    increase: (state, action) => {
+      state.amount += 1;
+      const itemIdx = state.cartItems.findIndex(
+        (cartItem) => cartItem.id === action.payload.id
+      );
+      state.cartItems[itemIdx].amount! += 1;
+      state.total += action.payload.price;
+    },
+    // 상품 수량 감소
+    decrease: (state, action) => {
+      const itemIdx = state.cartItems.findIndex(
+        (cartItem) => cartItem.id === action.payload.id
+      );
+      state.cartItems[itemIdx].amount! > 0 &&
+        state.cartItems[itemIdx].amount!-- &&
+        state.amount--;
+      if (state.cartItems[itemIdx].amount === 0) {
+        notify("상품을 장바구니에서 삭제했습니다");
+        state.cartItems = state.cartItems.filter(
+          (cartItem) => cartItem.id !== action.payload.id
+        );
+      }
+    },
+    // 장바구니 내 특정 상품 삭제
+    remove: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (cartItem) => cartItem.id !== action.payload.id
+      );
+      state.amount -= action.payload.amount;
+    },
+    // 장바구니 내 상품 총 수량 계산
+    total: (state) => {
+      let total = 0;
+      state.cartItems.forEach(
+        (cartItem) => (total += cartItem.amount! * cartItem.price)
+      );
+      state.total = total;
+    },
+    // 상품 초기화
+    clear: (state) => {
+      state.cartItems = [];
+      state.amount = 0;
+    },
+  },
+});
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export const { add, increase, decrease, remove, total, clear } =
+  cartSlice.actions;
+export const cartSelector = (state: RootState) => state.cart;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+export default cartSlice.reducer;
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
